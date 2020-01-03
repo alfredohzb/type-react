@@ -3,17 +3,31 @@ interface Task {
   title: String;
 }
 interface TasksListProps {
+  initialTasks: Task[];
+}
+interface TaskListState {
   tasks: Task[];
 }
-const TaskList: React.FC<TasksListProps> = ({ tasks }) => {
-  return (
-    <ul>
-      {tasks.map((task, i) => {
-        return <li key={i}>{task.title}</li>;
-      })}
-    </ul>
-  );
-};
+
+class TaskList extends React.Component<TasksListProps, TaskListState> {
+  constructor(props: TasksListProps) {
+    super(props);
+    this.state = {
+      tasks: props.initialTasks
+    };
+  }
+  render() {
+    const { tasks } = this.state;
+    return (
+      <ul>
+        {tasks.map((task, i) => {
+          return <li key={i}>{task.title}</li>;
+        })}
+      </ul>
+    );
+  }
+}
+
 const tasks = [
   { title: 'Task One' },
   { title: 'Task Two' },
@@ -21,6 +35,6 @@ const tasks = [
 ];
 export default () => (
   <div>
-    <TaskList tasks={tasks} />
+    <TaskList initialTasks={tasks} />
   </div>
 );
