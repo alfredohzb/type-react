@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { AppState } from '../reducer';
 import { fetchTasks } from '../actions';
 
+import Link from 'next/link';
+
 interface OwnProps {}
 
 interface StateProps {
@@ -25,6 +27,9 @@ export class TasksList extends React.Component<AllProps> {
     const { tasks } = this.props;
     return (
       <div>
+        <Link href="/">
+          <a>Home</a>
+        </Link>
         <ul>
           {tasks.map((task, i) => {
             return <li key={i}>{task.title}</li>;

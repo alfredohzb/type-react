@@ -1,6 +1,4 @@
-import React, { Children } from 'react';
-import { type } from 'os';
-
+import React from 'react';
 interface Props extends WeatherProps {
   theme: 'yellow' | 'green';
 }
@@ -36,7 +34,7 @@ interface withWeatherProps {
 
 export const WithWeatherProps: React.FC<withWeatherProps> = ({ children }) => {
   const props: WeatherProps = {
-    temperature: 10,
+    temperature: 50,
     scale: 'F'
   };
   return children(props);
