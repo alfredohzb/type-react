@@ -15,6 +15,12 @@ class TaskList extends React.Component<TasksListProps, TaskListState> {
     this.state = {
       tasks: props.initialTasks
     };
+    this.onAddNewTaskClick = this.onAddNewTaskClick.bind(this);
+  }
+  onAddNewTaskClick() {
+    this.setState({
+      tasks: [...this.state.tasks, { title: 'New Tasks' }]
+    });
   }
   render() {
     const { tasks } = this.state;
@@ -23,6 +29,7 @@ class TaskList extends React.Component<TasksListProps, TaskListState> {
         {tasks.map((task, i) => {
           return <li key={i}>{task.title}</li>;
         })}
+        <button onClick={this.onAddNewTaskClick}>Add new Task</button>
       </ul>
     );
   }
